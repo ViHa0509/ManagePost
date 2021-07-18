@@ -32,7 +32,7 @@ export default function postsReducers(state = INIT_STATE.posts, action) {
         case getType(deletePost.deletePostSuccess):
             return{
                 ...state, 
-                data: state.data.map(post => post.id === action.payload.id ? action.payload : post),
+                data: state.data.filter(post => post.id !== action.payload.id),
             };
         default:
             return state;

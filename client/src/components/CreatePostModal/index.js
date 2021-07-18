@@ -23,13 +23,14 @@ export default function CreatePostModal() {
             title: '',
             content: '',
             attchment:'',
-        })
+        });
     }, [dispatch]);
 
     const onSubmit = React.useCallback(() => {
         console.log({ data });
         dispatch(createPost.createPostRequest(data));
-    }, [data, dispatch]);
+        onClose();
+    }, [data, dispatch, onClose]);
 
     const body = (
         <div className={classes.paper} id='simple-modal-title'>
