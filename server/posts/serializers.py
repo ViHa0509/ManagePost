@@ -11,7 +11,6 @@ class UpdatePostSerializer(serializers.Serializer):
     content = serializers.CharField()
     attchment = serializers.CharField()
     like = serializers.IntegerField()
-    modified_on = serializers.DateTimeField()
 
 class PostSerializer(serializers.ModelSerializer):
     # attchment = serializers.ImageField()
