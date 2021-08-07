@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
     Avatar, Card, CardActions, CardContent, CardHeader, CardMedia, IconButton,
     Typography
@@ -9,36 +9,32 @@ import EditIcon from '@material-ui/icons/Edit';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import moment from 'moment';
 import { useDispatch } from 'react-redux';
-import { showConfirm, updatePost } from '../../../redux/actions';
+import { updatePost } from '../../../redux/actions';
 import DeleteConfirm from '../../ConfirmDialog';
 import UpdatePostModal from '../../UpdatePostModal';
 
 export default function Post({ post }) {
     const classes = useStyles();
     const dispatch = useDispatch();
-    const [data, setData] = React.useState({
-        post: post,
-        isShow: false
-    });
-
-    const onClose = () => {
-        setData({isShow : false});
-    };
-
-    const onUpdatePost = (post) => {
-        setData({
-            post : post,
-            isShow : true
-        });
-    }
+    const [data, setData] = React.useState(post);
+    const [show, setShow] = React.useState(false);
 
     const onLikeBtnClick = React.useCallback(() => {
         dispatch(updatePost.updatePostRequest({ ...post, like: post.like + 1 }));
     }, [dispatch, post]);
 
-    const onOpenDeletePostConfirm = React.useCallback(()=>{
-        dispatch(showConfirm({...post}));
-    }, [dispatch]);
+    const onClose = (show) =>{
+        setShow(show);
+    }
+    const onDeletePost = (post)=>{
+        setData(post);
+        setShow(true);
+    };
+
+    const onUpdatePost = (post) => {
+        setData(post);
+        setShow(true);
+    }
 
     return (
         <Card>
@@ -53,7 +49,7 @@ export default function Post({ post }) {
                 }
             />
             <UpdatePostModal data={data} onClose={onClose}/> 
-            <DeleteConfirm/>
+            <DeleteConfirm data={data} isShow={show} onClose={onClose}/>
             <CardMedia image={post.attchment} title='Title' className={classes.media} />
             <CardContent>
                 <Typography variant='h5' color='textPrimary'>{post.title}</Typography>
