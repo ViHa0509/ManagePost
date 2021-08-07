@@ -5,7 +5,6 @@ import * as api from '../../api';
 function* fetchPostSaga(action){
     try {
         const posts = yield call(api.fetchPosts);
-        console.log('[post]', posts);
         yield put(actions.getPosts.getPostsSuccess(posts.data));
     } catch (err) {
         console.error(err);
@@ -16,7 +15,6 @@ function* fetchPostSaga(action){
 function* createPostSaga(action) {
     try {
         const post = yield call(api.createPost, action.payload);
-        console.log('[createPostSaga - post]', post);
         yield put(actions.createPost.createPostSuccess(post.data));
     } catch (err) {
         console.error(err);
@@ -26,9 +24,7 @@ function* createPostSaga(action) {
 
 function* updatePostSaga(action) {
     try {
-        console.log({action});
         const updatedpost = yield call(api.updatePost, action.payload);
-        console.log('[updatePostSaga - post]', updatedpost);
         yield put(actions.updatePost.updatePostSuccess(updatedpost.data));
     } catch (err) {
         console.error(err);
@@ -38,10 +34,8 @@ function* updatePostSaga(action) {
 
 function* deletePostSaga(action) {
     try {
-        console.log({action});
         const deletepost = yield call(api.deletePost, action.payload);
-        console.log({deletepost});
-        yield put(actions.deletePost.deletePostSuccess(deletepost.data));
+        yield put(actions.deletePost.deletePostSuccess(action.payload));
     } catch (err) {
         console.error(err);
         yield put(actions.deletePost.deletePostFailure(err));

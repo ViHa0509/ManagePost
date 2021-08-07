@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     Avatar, Card, CardActions, CardContent, CardHeader, CardMedia, IconButton,
     Typography
@@ -8,7 +8,8 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import moment from 'moment';
 import { useDispatch } from 'react-redux';
-import { deletePost, updatePost } from '../../../redux/actions';
+import { deletePost, showConfirm, updatePost } from '../../../redux/actions';
+import DeleteConfirm from '../../ConfirmDialog';
 
 export default function Post({ post }) {
     const classes = useStyles();
@@ -18,9 +19,9 @@ export default function Post({ post }) {
         dispatch(updatePost.updatePostRequest({ ...post, like: post.like + 1 }));
     }, [dispatch, post]);
 
-    const onDeletePost = React.useCallback(() => {
-        dispatch(deletePost.deletePostRequest({...post}));
-    }, [dispatch, post]);
+    const onOpenDeletePostConfirm = React.useCallback(()=>{
+        dispatch(showConfirm({...post}));
+    }, [dispatch]);
 
     return (
         <Card>
@@ -29,11 +30,12 @@ export default function Post({ post }) {
                 title={post.author}
                 subheader={moment(post.created_on).format('HH:MM MM DD,YYYY')}
                 action={
-                    <IconButton onClick={onDeletePost}>
+                    <IconButton onClick={onOpenDeletePostConfirm}>
                         <DeleteIcon />
                     </IconButton>
                 }
             />
+            <DeleteConfirm/>
             <CardMedia image={post.attchment} title='Title' className={classes.media} />
             <CardContent>
                 <Typography variant='h5' color='textPrimary'>{post.title}</Typography>

@@ -30,3 +30,5 @@ export const deletePost = createActions({
 
 export const showModal = createAction('SHOW_CREATE_POST_MODAL');
 export const hideModal = createAction('HIDE_CREATE_POST_MODAL');
+export const showConfirm = createAction('SHOW_DELETE_POST_CONFIRM');
+export const hideConfirm = createAction('HIDE_DELETE_POST_CONFIRM');

@@ -17,7 +17,7 @@ class PostViewSet(ModelViewSet):
     
     def list(self, request, *args, **kwargs):
         queryset = self.get_queryset()
-        queryset = queryset.order_by('-created_on')
+        # queryset = queryset.order_by('-created_on')
         serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
