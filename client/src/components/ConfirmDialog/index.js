@@ -7,7 +7,7 @@ export default function DeleteConfirm(props) {
 
     const onClose = () => {
         props.onClose(false);
-;    };
+    };
     
     const onDeletePost = React.useCallback(() => {
         dispatch(deletePost.deletePostRequest(props.data));
@@ -24,11 +24,7 @@ export default function DeleteConfirm(props) {
             </DialogContent>
             <DialogActions>
                 <Button onClick={onClose}>Cancel</Button>
-<<<<<<< HEAD
-                <Button onClick={()=> onDeletePost()}>Delete</Button>
-=======
-                <Button onClick={()=> onDeletePost({...data})}>Delete</Button>
->>>>>>> 461d3f6099fe766d3cac2e37349efa3e670cd77d
+                <Button onClick={onDeletePost}>Delete</Button>
             </DialogActions>
         </Dialog>
     )
