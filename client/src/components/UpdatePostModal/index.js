@@ -1,14 +1,14 @@
 import { Button, Modal, TextareaAutosize, TextField } from '@material-ui/core';
 import FileBase64 from 'react-file-base64';
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import useStyles from './styles';
 import { updatePost } from '../../redux/actions';
 
 export default function UpdatePostModal(props) {
     const dispatch = useDispatch();
     const classes = useStyles();
-    const post = {...props.data.post};
+    const post = props.data;
     const [data, setData] = React.useState({
         id: post.id,
         title: post.title,
@@ -24,7 +24,6 @@ export default function UpdatePostModal(props) {
     const onSubmit = React.useCallback(() => {
         dispatch(updatePost.updatePostRequest(data));
         onClose();
-
     }, [data, dispatch, onClose]);
 
     const body = (
@@ -65,7 +64,7 @@ export default function UpdatePostModal(props) {
     );
     return (
         <div>
-            <Modal open={props.data.isShow} onClose={() => onClose()}>
+            <Modal open={props.isShow} onClose={() => onClose()}>
                 {body}
             </Modal>
         </div>
