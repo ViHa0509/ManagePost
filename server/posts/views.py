@@ -1,16 +1,18 @@
 from base64 import b64decode
 from django.core.files.base import ContentFile
 from django.utils.crypto import get_random_string
-from rest_framework import serializers
-from rest_framework import status
-from rest_framework.mixins import CreateModelMixin, ListModelMixin, UpdateModelMixin, DestroyModelMixin
-from posts.models import Post
-from posts.serializers import PostSerializer, CreatePostSerializer, UpdatePostSerializer
+from rest_framework import serializers, status
+from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.viewsets  import ModelViewSet
+from rest_framework.mixins import CreateModelMixin, ListModelMixin, UpdateModelMixin, DestroyModelMixin
+from posts.models import Post, CommentPost
+from posts.serializers import PostSerializer, CreatePostSerializer, UpdatePostSerializer, CommentPostSerializer, CreateCommentSerializer
+from server.pagination import SixPerPagePagination
 
 class PostViewSet(ModelViewSet):
     serializer_class = PostSerializer
+    paginations_class = SixPerPagePagination
     def get_queryset(self):
         queryset = Post.objects.all()
         return queryset
@@ -64,7 +66,49 @@ class PostViewSet(ModelViewSet):
         return Response(serializer.errors,  status.HTTP_400_BAD_REQUEST)
     
     def destroy(self, request, *args, **kwargs):
-        queryset = self.get_queryset()
         post = self.get_object()
         post.delete()
         return Response({}, status=status.HTTP_200_OK)
+    
+    @action(methods=['get'], detail=True, url_path='comment', pagination_class=SixPerPagePagination)
+    def get_comment(self, request, *args, **kwargs):
+        post = self.get_object()
+        comments = CommentPost.objects.filter(post=post)
+        page = self.paginate_queryset(comments)
+        if page is not None:
+            serializer = CommentPostSerializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+        serializer = CommentPostSerializer(post, many=True)
+        return Response(serializer.data)
+
+class CommentPostViewSet(ModelViewSet):
+    serializer_class = CommentPostSerializer
+    def get_queryset(self):
+        queryset = CommentPost.objects.all()
+        return queryset
+
+    def create(self, request, *args, **kwargs):
+        serializer = CreateCommentSerializer(data=request.data)
+        if serializer.is_valid():
+            post_id = serializer.validated_data.get('post_id')
+            post = Post.objects.filter(pk=post_id).first()
+            message = serializer.validated_data.get('message')
+            post = CommentPost.objects.create(message=message, post=post)
+            return Response( self.get_serializer(post).data, status=status.HTTP_200_OK) 
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def update(self, request, *args, **kwargs):
+        comment = self.get_object()
+        serializer = CreateCommentSerializer(data=request.data)
+        if serializer.is_valid():
+            message = serializer.validated_data('message')
+            comment.message = message
+            comment.save()
+            return Response(self.get_serializer(comment).data, status=status.HTTP_200_OK) 
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    def destroy(self, request, *args, **kwargs):
+        comment = self.get_object()
+        comment.delete()
+        return Response(status=status.HTTP_200_OK)
+        

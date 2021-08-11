@@ -1,3 +1,6 @@
 ""
-server/posts/__pycache__
-server/posts/__pycache__
+server/posts/__pycache__/
+server/posts/__pycache__/
+server/posts/migrations/__pycache__/
+server/server/__pycache__/
+server/server/__pycache__/urls.cpython-39.pyc
