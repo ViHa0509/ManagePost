@@ -11,12 +11,11 @@ class UpdatePostSerializer(serializers.Serializer):
     content = serializers.CharField()
     attchment = serializers.CharField()
     like = serializers.IntegerField()
-    modified_on = serializers.DateTimeField()
 
 class PostSerializer(serializers.ModelSerializer):
     # attchment = serializers.ImageField()
     class Meta:
         model = Post
         fields = [
-            'id', 'title', 'content', 'author', 'attchment', 'like', 'modified_on'
+            'id', 'title', 'content', 'author', 'attchment', 'like', 'created_on'
         ]
