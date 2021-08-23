@@ -1,5 +1,6 @@
 from base64 import b64decode
 from django.core.files.base import ContentFile
+from django.db.models.functions import Concat
 from django.utils.crypto import get_random_string
 from rest_framework import serializers, status
 from rest_framework.decorators import action
@@ -8,7 +9,7 @@ from rest_framework.viewsets  import ModelViewSet
 from rest_framework.mixins import CreateModelMixin, ListModelMixin, UpdateModelMixin, DestroyModelMixin
 from posts.models import Post, CommentPost
 from posts.serializers import PostSerializer, CreatePostSerializer, UpdatePostSerializer, CommentPostSerializer, CreateCommentSerializer
-from server.pagination import SixPerPagePagination
+from server.pagination import SixPerPagePagination, TwentyPerPagePagination
 
 class PostViewSet(ModelViewSet):
     serializer_class = PostSerializer
@@ -25,7 +26,6 @@ class PostViewSet(ModelViewSet):
 
     def retrieve(self, request, *args, **kwargs):
         post= self.get_object()
-        print(post)
         serializer = self.get_serializer(post)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
@@ -59,6 +59,10 @@ class PostViewSet(ModelViewSet):
                 if 'data:' in attchment and ';base64,' in attchment:
                     image_data = b64decode(attchment.split('base64,')[1])
                     setattr(post, 'attchment', ContentFile(image_data, '{}.png'.format(get_random_string(length=32))))
+                else:
+                    array = str(attchment).split('/')[-2:]
+                    link = array[0] + '/' + array[1]
+                    post.attchment=link
             else:
                 setattr(post, attchment, None)
             post.save()
@@ -70,7 +74,7 @@ class PostViewSet(ModelViewSet):
         post.delete()
         return Response({}, status=status.HTTP_200_OK)
     
-    @action(methods=['get'], detail=True, url_path='comment', pagination_class=SixPerPagePagination)
+    @action(methods=['get'], detail=True, url_path='comment', pagination_class=TwentyPerPagePagination)
     def get_comment(self, request, *args, **kwargs):
         post = self.get_object()
         comments = CommentPost.objects.filter(post=post)

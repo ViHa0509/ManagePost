@@ -6,6 +6,13 @@ class CreatePostSerializer(serializers.Serializer):
     content = serializers.CharField()
     attchment = serializers.CharField()
 
+# class UpdatePostSerializer(serializers.ModelSerializer):
+#     attchment = serializers.CharField(allow_null=True)
+#     class Meta:
+#         model = Post
+#         fields = [
+#             'id', 'title', 'content', 'attchment', 'like',
+#         ]
 class UpdatePostSerializer(serializers.Serializer):
     title = serializers.CharField()
     content = serializers.CharField()
@@ -14,11 +21,15 @@ class UpdatePostSerializer(serializers.Serializer):
 
 class PostSerializer(serializers.ModelSerializer):
     # attchment = serializers.ImageField()
+    comment_count = serializers.SerializerMethodField()
     class Meta:
         model = Post
         fields = [
-            'id', 'title', 'content', 'author', 'attchment', 'like', 'created_on'
+            'id', 'title', 'content', 'author', 'attchment', 'like', 'created_on', 'comment_count'
         ]
+
+    def get_comment_count(self, post):
+        return post.comment.count()
 
 class CommentPostSerializer(serializers.ModelSerializer):
     class Meta:

@@ -5,7 +5,7 @@ from tempfile import NamedTemporaryFile
 
 # Create your models here.
 class Post(models.Model):
-    title = models.TextField(unique=True)
+    title = models.TextField(null=False)
     content = models.TextField(null=True, blank=True)
     author = models.TextField(default='Anonymous', null=True, blank=True)
     attchment = models.ImageField(upload_to='images/')
