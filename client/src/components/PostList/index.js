@@ -14,12 +14,8 @@ export default function PostList() {
     }, [dispatch])
 
     return (
-        <Grid container spacing={2} alignItems="stretch">
-            {posts.map( (post) => (
-                <Grid item xs={12} sm={6}>
-                    <Post key={post.id} post={post} />
-                </Grid>
-            ))}
-        </Grid>
+        posts.map( (post) => (
+            <Post key={post.id} post={post} />
+        ))
     );
 }

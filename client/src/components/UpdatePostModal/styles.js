@@ -28,4 +28,10 @@
     footer: {
         marginTop: '10px',
     },
+    image: {
+        height:150,
+        width:400,
+        marginBottom: '10px',
+        borderRadius: '8px',
+    }
  }));
