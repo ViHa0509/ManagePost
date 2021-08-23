@@ -1,6 +1,4 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { createComment } from '../../../redux/actions';
 import {CommentFormStyle, CommentFormField, CommentFormAction, ButtonPostComment, 
     InputComment, TextAreaComment
 } from '../styles';
@@ -18,9 +16,6 @@ export  default function CommentForm(props) {
     });
   }
   const onSubmit = (e) =>{
-    // if(data.message.trim()){
-    //   this.setData({...data, message:''});
-    // }
     props.onSubmit(data);
     setData({message:''})
     e.preventDefault();
