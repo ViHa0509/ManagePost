@@ -28,5 +28,17 @@ export const deletePost = createActions({
     deletePostFailure: (err) => err,
 });
 
+export const getComments = createActions({
+    getCommentsRequest: (payload) => payload,
+    getCommentsSuccess: (payload) => payload,
+    getCommentsFailure: (err) => err,
+});
+
+export const createComment = createActions({
+    createCommentRequest: (payload) => payload,
+    createCommentSuccess: (payload) => payload,
+    createCommentFailure: (err) => err,
+});
+
 export const showModal = createAction('SHOW_CREATE_POST_MODAL');
 export const hideModal = createAction('HIDE_CREATE_POST_MODAL');

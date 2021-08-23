@@ -3,10 +3,11 @@ export const INIT_STATE = {
         isLoading: false, 
         data: []
     },
+    comments: {
+        isLoading: false,
+        data:[]
+    },
     modal: {
         isShow: false,
     },
-    confirm: {
-        isShow: false,
-    }
 }

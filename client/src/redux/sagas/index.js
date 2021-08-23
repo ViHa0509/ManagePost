@@ -42,11 +42,35 @@ function* deletePostSaga(action) {
     }
 };
 
+function* fetchCommentSaga(action) {
+    try {
+        const comments = yield call(api.fetchComments, action.payload);
+        yield put(actions.getComments.getCommentsSuccess(comments.data));
+    }
+    catch(err){
+        console.error(err);
+        yield put(actions.getComments.getCommentsFailure(err));
+    }
+};
+
+function* createCommentSaga(action) {
+    try {
+        const comment = yield call(api.createComment, action.payload);
+        yield put(actions.createComment.createCommentSuccess(comment.data));
+    }
+    catch(err){
+        console.error(err);
+        yield put(actions.createComment.createCommentFailure(err));
+    }
+};
+
 function* mySaga() {
     yield takeLatest(actions.getPosts.getPostsRequest, fetchPostSaga);
     yield takeLatest(actions.createPost.createPostRequest, createPostSaga);
     yield takeLatest(actions.updatePost.updatePostRequest, updatePostSaga);
     yield takeLatest(actions.deletePost.deletePostRequest, deletePostSaga);
+    yield takeLatest(actions.getComments.getCommentsRequest, fetchCommentSaga);
+    yield takeLatest(actions.createComment.createCommentRequest, createCommentSaga);
 };
 
 export default mySaga;

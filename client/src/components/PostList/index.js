@@ -11,7 +11,7 @@ export default function PostList() {
 
     React.useEffect(() => {
         dispatch(actions.getPosts.getPostsRequest());
-    }, [dispatch]);
+    }, [dispatch])
 
     return (
         <Grid container spacing={2} alignItems="stretch">
