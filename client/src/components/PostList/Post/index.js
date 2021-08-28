@@ -125,11 +125,11 @@ export default function Post({ post }) {
             />
             <UpdatePostModal data={data} isShow={showEdit} onClose={onClose} />
             <DeleteConfirm data={data} isShow={showDel} onClose={onClose} />
-            <CardMedia image={post.attchment} title={post.title} className={classes.media} />
             <CardContent>
                 <Typography variant='h5' color='textPrimary'>{post.title}</Typography>
-                <Typography variant='body2' color='p' color='textSecondary'>{post.content}</Typography>
+                {/* <Typography variant='body2' color='p' color='textSecondary'>{post.content}</Typography> */}
             </CardContent>
+            <CardMedia image={post.attchment} title={post.title} className={classes.media} />
             <CardActions>
                 <IconButton>
                     <FavoriteIcon onClick={() => onLikeBtnClick(post)} />

@@ -1,0 +1,76 @@
+#draft-editor {
+    padding: 6px 12px 6px 12px;
+    cursor: text;
+    font-size: 14px;
+    min-height: 36px;
+    min-width: 200px;
+    z-index: 0; }
+  
+  .create-course-title {
+    padding: 6px 12px 6px 12px;
+    cursor: text;
+    font-size: 14px;
+    margin-bottom: 15px;
+    background-color: #f6f3f3;
+    min-height: 34px;
+    min-width: 490px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); }
+  
+  .create-course-excerpt {
+    padding: 6px 12px 6px 12px;
+    cursor: text;
+    font-size: 14px;
+    margin-bottom: 15px;
+    background-color: #f6f3f3;
+    min-height: 70px;
+    min-width: 490px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); }
+  
+  .create-course-description {
+    padding: 6px 12px 6px 12px;
+    cursor: text;
+    font-size: 14px;
+    margin-bottom: 15px;
+    background-color: #f6f3f3;
+    min-height: 200px;
+    min-width: 490px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); }
+  
+  .DraftEditor-editorContainer,
+  .DraftEditor-root,
+  .public-DraftEditor-content {
+    height: inherit;
+    text-align: initial;
+    color: #555555; }
+  
+  .DraftEditor-root,
+  .public-DraftEditor-block {
+    position: relative; }
+  
+  .DraftEditor-editorContainer {
+    background-color: rgba(255, 255, 255, 0);
+    border-left: 1px solid transparent;
+    position: relative;
+    z-index: 1; }
+  
+  .DraftEditor-editorContainer,
+  .DraftEditor-root,
+  .public-DraftEditor-content {
+    text-align: initial; }
+  
+  .public-DraftEditorPlaceholder-root {
+    color: #9197a3;
+    position: absolute;
+    z-index: 0; }
+  
+  @media screen and (max-width: 767px) {
+    .public-DraftStyleDefault-ltr span {
+      color: #5E7785;
+      font-size: 12px;
+      line-height: 20px; } }

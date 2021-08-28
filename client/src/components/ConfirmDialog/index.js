@@ -1,7 +1,10 @@
 import React from "react";
-import { Dialog, DialogContent, DialogActions, Button } from '@material-ui/core';
+import { Dialog, DialogContent, Button } from '@material-ui/core';
 import { useDispatch } from "react-redux";
 import { deletePost } from "../../redux/actions";
+import deleteImage from "../../assets/deleteImage.jpg";
+import "./ConfirmDialog.css";
+import { DialogAction } from "./styles";
 export default function DeleteConfirm(props) {
     const dispatch = useDispatch();
 
@@ -19,13 +22,14 @@ export default function DeleteConfirm(props) {
             open={props.isShow}
             onClose={onClose}
         >
+            <img src={deleteImage}  />
             <DialogContent>
                 Are you Sure? Your post would be permanently lost
             </DialogContent>
-            <DialogActions>
+            <DialogAction >
                 <Button onClick={onClose}>Cancel</Button>
                 <Button onClick={onDeletePost}>Delete</Button>
-            </DialogActions>
+            </DialogAction>
         </Dialog>
     )
 }
