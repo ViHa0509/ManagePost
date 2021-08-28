@@ -42,6 +42,10 @@ class PostViewSet(ModelViewSet):
                 if 'data:' in attchment and ';base64,' in attchment:
                     image_data = b64decode(attchment.split('base64,')[1])
                     setattr(post, 'attchment', ContentFile(image_data, '{}.png'.format(get_random_string(length=32))))
+                else:
+                    array = str(attchment).split('/')[-2:]
+                    link = array[0] + '/' + array[1]
+                    post.attchment=link
             else:
                 setattr(post, attchment, None)
             post.save()
