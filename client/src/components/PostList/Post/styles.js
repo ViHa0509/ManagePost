@@ -6,5 +6,13 @@ export default makeStyles((theme) => ({
     },
     option:{
         marginLeft: "40%",
+    },
+    avatar:{
+        width: 40,
+        height: 40,
+        display: "block",
+        marginLeft: "auto",
+        marginRight: "auto",
+        borderRadius: 5
     }
 }));

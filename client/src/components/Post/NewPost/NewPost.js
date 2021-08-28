@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import { createPost } from '../../../redux/actions';
 import ReactFileReader from 'react-file-reader';
 import PostPreview from '../PostPreview/PostPreview';
+import hachivi from '../../../assets/hachivi.jpg';
 
 export default function NewPost() {
     const dispatch = useDispatch();
@@ -43,7 +44,7 @@ export default function NewPost() {
             <Form horizontal noValidate id="NeewsPostForm" onSubmit={event => event.preventDefault()}>
                 <Row className="news-post-row">
                     <Col xs={2} sm={2} className="news-post-avatar">
-                        <img src="https://canopylab-upload-dev.s3.amazonaws.com/media/e6H3CJ0OiTSRS7dNcM04qiKqaxBlwKD3_1629881933.png" alt=""/>
+                        <img src={hachivi} alt=""/>
                     </Col>
                     <Col xs={10} sm={10} id="draft-editor">
                         <MyEditor placeholder='Post now...' handleChange={handleChange}/>

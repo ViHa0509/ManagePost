@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const CommentBoxStyle = styled.div`
-    max-width: 37.5rem;
     color: #fff;
     background-color: #fff;
     border-radius: 0.875rem;

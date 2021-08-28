@@ -2,10 +2,10 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles( (theme) =>({
     container: {
-        backgroundColor: theme.palette.primary.main,
+        backgroundColor: "#4267B2",
         color: "white",
         marginBottom: 20,
-        fontWeight: 'lighter',
+        // fontWeight: 'lighter',
         padding: '5px 0',
     },
 }));

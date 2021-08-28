@@ -19,6 +19,8 @@ import * as api from '../../../api';
 import { CommentBoxStyle } from '../../CommentBox/styles';
 import CommentForm from '../../CommentBox/CommentForm';
 import ListComment from '../../CommentBox/ListComment';
+import hachivi from '../../../assets/hachivi.jpg';
+import './Post.css';
 
 export default function Post({ post }) {
     const classes = useStyles();
@@ -108,7 +110,11 @@ export default function Post({ post }) {
     return (
         <Card>
             <CardHeader
-                avatar={<Avatar>{post.attchment}</Avatar>}
+                avatar={
+                    <div className="news-post-avatar">
+                        <img className={classes.avatar} src={hachivi} alt=""/>
+                    </div>
+                }
                 title={post.author}
                 subheader={moment(post.created_on).format('HH:MM MM DD,YYYY')}
                 action={

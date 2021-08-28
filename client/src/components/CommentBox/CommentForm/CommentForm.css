@@ -1,0 +1,87 @@
+.post-news-comment {
+    padding: 10px 20px;
+    background-color: #fff;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    border-bottom: 1px solid #eaedf3;
+    border-top: 1px solid #eaedf3;
+    margin-bottom: 30px;}
+.post-news-comment .form-group  {
+    position: relative;
+    margin-bottom: 0px;
+    display: flex;
+    align-items: center;}
+    .post-news-comment .form-group::after  {
+        content: '';
+        display: block;
+        clear: both;}
+.post-news-comment .form-group .user-avatar {
+    float: left;
+    margin: 0 5px 5px 0;
+    width: 36px;
+    height: 36px;
+    position: relative;
+    border-radius: 5px;
+}
+.post-news-comment .form-group .user-avatar img {
+    width: 36px;
+    height: 36px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 20px;
+}
+.post-news-comment .form-group textarea {
+    box-sizing: border-box;
+    outline: none;
+    border: 1px solid #fff;
+    border-radius: 6px;
+    background-color: #fff;
+    color: #5e7785;
+    font-family: "Roboto", sans-serif;
+    font-size: 14px;
+    letter-spacing: 0;
+    padding-left: 10px;
+}
+
+.post-news-comment .form-group textarea::focus {
+    border-color: #a4daff;
+}
+.post-news-comment .form-group .post-comment-btn {
+    position: absolute;
+    top: 6px;
+    right: 0px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+.post-news-comment .form-group .post-comment-btn img{
+    width: 20px;
+    height: 20px;
+    margin: 0 10px 0 0;
+    vertical-align: middle;
+}
+.post-news-comment .form-control {
+    border: none;
+    width: 88%;
+    box-shadow: none;
+    color: #5e7785;
+    font-family: "Roboto", sans-serif;
+    font-size: 13px;
+    line-height: 20px;
+    padding: 6px 12px;
+    background-color: #fff;
+    background-image: none;
+}
+.post-news-comment .form-control::placeholder{
+    opacity: 0.5;
+}
+
+@media screen and (max-width: 767px) {
+    .post-news-comment .form-control {
+        font-size: 12px;
+    }
+    .post-news-comment .form-group .post-comment-btn {
+        right: -10px;
+    }
+}

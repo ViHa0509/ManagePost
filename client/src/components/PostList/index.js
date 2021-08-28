@@ -15,7 +15,9 @@ export default function PostList() {
 
     return (
         posts.map( (post) => (
-            <Post key={post.id} post={post} />
+            <div className="news-post">
+                <Post key={post.id} post={post} className='news-post-block'/>
+            </div>
         ))
     );
 }
