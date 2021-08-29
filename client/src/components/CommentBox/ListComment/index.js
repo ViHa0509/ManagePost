@@ -1,6 +1,6 @@
 import React from 'react';
 import Comment from './Comment';
-
+import './ListComment.css';
 export default function ListComment(props) {
     const comments = {...props.data};
     const onDelete = (data) => {
@@ -9,7 +9,7 @@ export default function ListComment(props) {
     return ( 
         <div className="comment-list">
             {comments.results.map((comment) => (
-                <Comment key={comment.id} comment={comment} onDelete={onDelete}/> 
+                <Comment key={comment.id} comment={comment} onDelete={onDelete} className="comment"/> 
             ))}
         </div>
     )

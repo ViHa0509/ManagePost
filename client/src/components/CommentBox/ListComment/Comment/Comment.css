@@ -1,0 +1,79 @@
+ .comment {
+    padding: 20px;
+    border-bottom: 1px solid #eaedf3;
+    background-color: #fff;
+    position: relative;}
+ .comment .comment::after{
+    box-sizing: border-box;}
+ .comment .user-avatar {
+    margin-right: 10px;
+    vertical-align: top;
+    margin: 0 5px 5px 0;
+    width: 36px;
+    height: 36px;
+    position: relative; }
+     .comment .user-avatar img {
+        margin: 0 5px 5px 0;
+        width: 100%;
+        height: 100%;
+        position: relative;
+        border-radius: 20px;
+     }
+.comment .user-details {
+    vertical-align: middle;
+    padding: 12px 15px;
+    width: 100%;
+    background-color: rgba(240,242,246,.6);
+    border-radius: 5px;
+}
+.comment .user-details .user-name {
+    font-family: "Roboto",sans-serif;
+    font-size: 13px;
+    color: #52b9ff;
+}
+.comment .user-details .post-time {
+    color: #aebbc2;
+    font-size: 11px;
+    text-align: left;
+}
+.comment .user-details .post-time img{
+    width: 25px;
+    height: 25px;
+    vertical-align: middle;
+    margin-left: -7px;
+    margin-right: -3px;
+    margin-top: -2px;
+}
+.comment .news-view-comment-description {
+    color: #5e7785;
+    font-family: "Roboto",sans-serif;
+    font-size: 13px;
+    line-height: 20px;
+}
+.div-table-cell {
+    display: table-cell;
+    line-height: 14px;
+}
+.div-table-row {
+    display: table-row;
+}
+.div-table {
+    display: table;
+}
+
+.comment:hover > .delete-comment,
+.comment:focus > .delete-comment {
+    display: inherit;
+}
+.delete-comment {
+    height: 18px;
+    width: 16px;
+    border-radius: 50%;
+    position: absolute;
+    top:30px;
+    right: 30px;
+    float:right;
+    cursor: pointer;
+    background: url('../../../../assets/delete.svg') no-repeat center;
+    display: none;
+}
