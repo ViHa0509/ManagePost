@@ -1,4 +1,4 @@
-import {takeLatest, call, put} from 'redux-saga/effects';
+import { takeLatest, call, put, delay } from 'redux-saga/effects';
 import * as actions from '../actions';
 import * as api from '../../api';
 
@@ -42,11 +42,23 @@ function* deletePostSaga(action) {
     }
 };
 
+function* loadMorePostSaga(action) {
+    try {
+        const posts = yield call(api.loadMorePost, action.payload);
+        yield delay(1000);
+        yield put(actions.loadMorePost.loadMorePostSuccess(posts.data));
+    } catch (err) {
+        console.error(err);
+        yield put(actions.loadMorePost.loadMorePostFailure(err));
+    }
+};
+
 function* mySaga() {
     yield takeLatest(actions.getPosts.getPostsRequest, fetchPostSaga);
     yield takeLatest(actions.createPost.createPostRequest, createPostSaga);
     yield takeLatest(actions.updatePost.updatePostRequest, updatePostSaga);
     yield takeLatest(actions.deletePost.deletePostRequest, deletePostSaga);
+    yield takeLatest(actions.loadMorePost.loadMorePostRequest, loadMorePostSaga);
 };
 
 export default mySaga;

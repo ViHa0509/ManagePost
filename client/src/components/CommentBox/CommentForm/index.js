@@ -1,13 +1,8 @@
 import React from 'react';
-import { Button, Form, FormGroup } from 'react-bootstrap';
-import {CommentFormStyle, CommentFormField, CommentFormAction, ButtonPostComment, 
-    InputComment, TextAreaComment
-} from '../styles';
+import { Form, FormGroup } from 'react-bootstrap';
 import './CommentForm.css';
 import hachivi from '../../../assets/hachivi.jpg';
 import postIcon from '../../../assets/post.svg';
-import { Avatar } from '@material-ui/core';
-import autosize from 'autosize'
 
 export  default function CommentForm(props) {
   const post = props.post;
@@ -40,20 +35,6 @@ export  default function CommentForm(props) {
   };
     
   return (
-      // <CommentFormStyle onSubmit={onSubmit}>
-      //   <CommentFormField>
-      //     {/* <InputComment placeholder="Name" ></InputComment><br /> */}
-      //     <TextAreaComment 
-      //       placeholder="Comment" 
-      //       value={data.message} 
-      //       onChange={handleChange}
-      //       onKeyDown={onKeyDown}
-      //       />
-      //   </CommentFormField>
-      //   <CommentFormAction>
-      //     <ButtonPostComment type="submit" >Post Comment</ButtonPostComment>
-      //   </CommentFormAction>
-      // </CommentFormStyle>
       <div className="post-news-comment">
         <Form onSubmit={onSubmit}>
           <FormGroup>

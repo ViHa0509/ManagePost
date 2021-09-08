@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardMedia, IconButton, Typography } from '@material-ui/core';
+import { Card, CardContent, CardMedia, IconButton, Typography } from '@material-ui/core';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import React from 'react';
 import useStyles from '../../PostList/Post/styles';

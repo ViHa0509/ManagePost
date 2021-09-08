@@ -1,0 +1,21 @@
+.post-load-more{
+    min-height: 35px;
+    padding: 10px;
+    color: #51b9ff;
+    font-family: Roboto,sans-serif;
+    font-size: 11px;
+    line-height: 16px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    background-color: #f8f8f8;
+}
+
+.load-more {
+    color: #52b9ff;
+    font-family: Roboto;
+    font-size: 11px;
+    line-height: 16px;
+    text-align: center;
+    cursor: pointer;
+}

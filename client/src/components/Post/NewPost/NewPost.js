@@ -18,7 +18,6 @@ export default function NewPost() {
         attchment: '',
     });
     const handleFiles = (files) => {
-        console.log(files);
         setData({
             ...data,
             attchment: files.base64
@@ -29,11 +28,12 @@ export default function NewPost() {
     };
     const clearData = () =>{
         setData({
+            ...data,
             title: '',
             content:'',
             attchment:''
-        })
-    }
+        });
+    };
     const handlePostNews = React.useCallback(() =>{
         dispatch(createPost.createPostRequest(data));
         clearData();
@@ -47,7 +47,7 @@ export default function NewPost() {
                         <img src={hachivi} alt=""/>
                     </Col>
                     <Col xs={10} sm={10} id="draft-editor">
-                        <MyEditor placeholder='Post now...' handleChange={handleChange}/>
+                        <MyEditor title={data.title} handleChange={handleChange}/>
                     </Col>
                 </Row>
                 <div className="divide"></div>

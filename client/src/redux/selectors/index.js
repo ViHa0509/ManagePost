@@ -1,3 +1,3 @@
-export const postsState$ = (state) =>  state.posts.data;
+export const postsState$ = (state) =>  state.posts;
 
 export const modalState$ = (state) => state.modal;

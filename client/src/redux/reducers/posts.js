@@ -1,5 +1,5 @@
 import { INIT_STATE } from '../../constant';
-import { getPosts, getType, updatePost, createPost, deletePost } from '../actions';
+import { getPosts, getType, updatePost, createPost, deletePost, loadMorePost } from '../actions';
 
 export default function postsReducers(state = INIT_STATE.posts, action) {
     switch(action.type) {
@@ -12,7 +12,7 @@ export default function postsReducers(state = INIT_STATE.posts, action) {
             return{
                 ...state, 
                 isLoading: false,
-                data: action.payload,
+                data: action.payload.results,
             };
         case getType(getPosts.getPostsFailure):
             return{
@@ -22,7 +22,7 @@ export default function postsReducers(state = INIT_STATE.posts, action) {
         case getType(createPost.createPostSuccess):
             return{
                 ...state, 
-                data: [...state.data, action.payload],
+                data: [action.payload, ...state.data],
             };
         case getType(updatePost.updatePostSuccess):
             return{
@@ -33,6 +33,25 @@ export default function postsReducers(state = INIT_STATE.posts, action) {
             return{
                 ...state, 
                 data: state.data.filter(post => post.id !== action.payload.id),
+            };
+        case getType(loadMorePost.loadMorePostRequest):
+            return {
+                ...state,
+                isLoading: true,
+            };
+        case getType(loadMorePost.loadMorePostSuccess):
+            const newData = action.payload.results;
+            const { data } = state;
+            return {
+                ...state,
+                data: [...data, ...newData],
+                isLoading: false,
+            };
+        case getType(loadMorePost.loadMorePostFailure):
+            return {
+                ...state,
+                error: action.payload,
+                isLoading: false,
             };
         default:
             return state;

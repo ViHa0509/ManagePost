@@ -1,23 +1,23 @@
 import React from 'react';
 import {ContentState, Editor, EditorState} from 'draft-js';
-import {stateToHTML} from 'draft-js-export-html';
 import './MyEditor.css';
 export default function MyEditor (props) {
 
     const [editorState, setEditorState] = React.useState(
         ()=> EditorState.createEmpty()
     )
-    const [editorName, setEditorName] = React.useState('');
+
     const onChange = (editorState) => {
         setEditorState(editorState);
         const currentContent = editorState.getCurrentContent();
         const text = currentContent.getPlainText();
-        const html = stateToHTML(currentContent);
-        setEditorName(...editorName, text);
-        
-        console.log('text', text);
-        props.handleChange(text, editorName, html);
+        props.handleChange(text);
     };
+
+    React.useEffect(() => {
+        const editerState = EditorState.push(editorState, ContentState.createFromText(props.title));
+        setEditorState(editerState);
+    }, [props.title]);
 
     return (
         <Editor 

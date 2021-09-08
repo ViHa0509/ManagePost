@@ -22,7 +22,7 @@ export default function Comment(props) {
                         <div className="div-table-cell">Ha Chi Vi</div>
                     </div>
                     <div className="div-table-row post-time">
-                        <img src={timeIcon}/>{moment(comment.created_on).format('HH:MM MM DD,YYYY')}
+                        <img src={timeIcon} alt="time icon"/>{moment(comment.created_on).format('HH:MM MM DD,YYYY')}
                     </div>
                     <div className="div-table-row news-view-comment-description">
                         <div className="div-table-cell">{comment.message}</div>

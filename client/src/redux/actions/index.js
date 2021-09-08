@@ -28,6 +28,12 @@ export const deletePost = createActions({
     deletePostFailure: (err) => err,
 });
 
+export const loadMorePost = createActions({
+    loadMorePostRequest: (payload) => payload,
+    loadMorePostSuccess: (payload) => payload,
+    loadMorePostFailure: (err) => err,
+});
+
 export const getComments = createActions({
     getCommentsRequest: (payload) => payload,
     getCommentsSuccess: (payload) => payload,

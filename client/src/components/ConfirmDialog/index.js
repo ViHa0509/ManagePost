@@ -22,7 +22,7 @@ export default function DeleteConfirm(props) {
             open={props.isShow}
             onClose={onClose}
         >
-            <img src={deleteImage}  />
+            <img src={deleteImage} className="delete-img" />
             <DialogContent>
                 Are you Sure? Your post would be permanently lost
             </DialogContent>

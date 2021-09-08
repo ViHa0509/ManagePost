@@ -13,14 +13,19 @@ from server.pagination import SixPerPagePagination, TwentyPerPagePagination
 
 class PostViewSet(ModelViewSet):
     serializer_class = PostSerializer
-    paginations_class = SixPerPagePagination
+    pagination_class = SixPerPagePagination
     def get_queryset(self):
         queryset = Post.objects.all()
         return queryset
     
     def list(self, request, *args, **kwargs):
         queryset = self.get_queryset()
+        queryset = queryset.order_by('-created_on')
         # queryset = queryset.order_by('-created_on')
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
         serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
