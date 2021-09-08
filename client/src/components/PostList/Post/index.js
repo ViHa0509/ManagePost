@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
-    Avatar, Card, CardActions, CardContent, CardHeader, CardMedia, IconButton, MenuItem,
+    Card, CardActions, CardContent, CardHeader, CardMedia, IconButton, MenuItem,
     Typography, Menu
 } from '@material-ui/core';
 import useStyles from './styles';
@@ -11,8 +11,6 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 import ShareIcon from '@material-ui/icons/Share';
 import moment from 'moment';
-import { useDispatch } from 'react-redux';
-import { updatePost } from '../../../redux/actions';
 import DeleteConfirm from '../../ConfirmDialog';
 import UpdatePostModal from '../../UpdatePostModal';
 import * as api from '../../../api';
@@ -24,7 +22,6 @@ import './Post.css';
 
 export default function Post({ post }) {
     const classes = useStyles();
-    const dispatch = useDispatch();
     const [data, setData] = React.useState(post);
     const [showCmtBox, setShowCmtBox] = React.useState(false);
     const [comments, setComments] = React.useState();
