@@ -8,7 +8,7 @@ export default function PostList(props) {
     React.useEffect(() => {
         setResult(props.data)
     }, [props.data.isLoading]);
-    
+
     React.useEffect(() => {
         window.addEventListener('scroll', handleScroll);
         return () => {
@@ -44,9 +44,7 @@ export default function PostList(props) {
             <div className="post-load-more">
                 {result && result.isLoading ? (
                     <div className="load-more">LOADING...</div>
-                ) : (
-                    <div className="load-more" onClick={() => loadMore(result.next)} >LOAD MORE</div>
-                )}
+                ) : null}
             </div>
         </div>
     );
