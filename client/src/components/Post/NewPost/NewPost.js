@@ -40,8 +40,8 @@ export default function NewPost() {
     },[data, dispatch, clearData]);
     
     return (
-        <div class="news-post">
-            <Form horizontal noValidate id="NeewsPostForm" onSubmit={event => event.preventDefault()}>
+        <div className="news-post">
+            <Form horizontal="true" noValidate id="NeewsPostForm" onSubmit={event => event.preventDefault()}>
                 <Row className="news-post-row">
                     <Col xs={2} sm={2} className="news-post-avatar">
                         <img src={hachivi} alt=""/>

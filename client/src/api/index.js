@@ -9,4 +9,5 @@ export const deletePost = (payload) => axious.delete(`${URL}/posts/${payload.id}
 export const fetchComments = (payload) => axious.get(`${URL}/posts/${payload.id}/comment/`, payload);
 export const createComment = (payload) => axious.post(`${URL}/comment/`, payload);
 export const deleteComment = (payload) => axious.delete(`${URL}/comment/${payload.id}/`, payload);
-export const loadMorePost = (payload) => axious.get(`${URL}/posts/?page=${payload}`);
+// export const loadMorePost = (payload) => axious.get(`${URL}/posts/?page=${payload}`);
+export const loadMorePost = (url) => axious.get(url);

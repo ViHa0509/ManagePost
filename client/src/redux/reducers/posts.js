@@ -12,6 +12,7 @@ export default function postsReducers(state = INIT_STATE.posts, action) {
             return{
                 ...state, 
                 isLoading: false,
+                next: action.payload.next,
                 data: action.payload.results,
             };
         case getType(getPosts.getPostsFailure):
@@ -44,13 +45,15 @@ export default function postsReducers(state = INIT_STATE.posts, action) {
             const { data } = state;
             return {
                 ...state,
-                data: [...data, ...newData],
                 isLoading: false,
+                next: action.payload.next,
+                data: [...data, ...newData],
             };
         case getType(loadMorePost.loadMorePostFailure):
             return {
                 ...state,
                 error: action.payload,
+                next: action.next,
                 isLoading: false,
             };
         default:

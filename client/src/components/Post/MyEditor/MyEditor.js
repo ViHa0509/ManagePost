@@ -16,8 +16,7 @@ export default function MyEditor (props) {
 
     React.useEffect(() => {
         if(props.title === ''){
-            const editerState = EditorState.push(editorState, ContentState.createFromText(''));
-            setEditorState(editerState)
+            setEditorState(EditorState.push(editorState, ContentState.createFromText('')));
         };
     }, [props.title]);
 

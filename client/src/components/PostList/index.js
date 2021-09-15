@@ -1,23 +1,53 @@
 import React from 'react';
-import { Grid } from "@material-ui/core";
 import Post from './Post';
-import { useDispatch, useSelector } from 'react-redux';
-import * as actions from '../../redux/actions';
-import { postsState$ } from '../../redux/selectors';
+import './PostList.css';
 
-export default function PostList() {
-    const dispatch = useDispatch();
-    const posts = useSelector(postsState$);
-
+export default function PostList(props) {
+    console.log('0000',props.data);
+    const [result, setResult] = React.useState(props.data);
     React.useEffect(() => {
-        dispatch(actions.getPosts.getPostsRequest());
-    }, [dispatch])
+        setResult(props.data)
+    }, [props.data.isLoading]);
+    
+    React.useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        }
+    }, [result])
+
+    const handleScroll = () => {
+        if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight - 1) {
+            if(result){
+                loadMore(result.next);
+            }
+        }};
+
+    const loadMore = (next) => {
+        if(next !== '' ){
+            props.loadMore(next)
+        }
+    };
 
     return (
-        posts.map( (post) => (
-            <div className="news-post">
-                <Post key={post.id} post={post} className='news-post-block'/>
+        <div>
+            <div>
+                {result && result.data.map((post) => {
+                    return (
+                        <div key={post.id} className="news-post">
+                            <Post post={post} className='news-post-block' />
+                        </div>
+                    )
+                })
+                }
             </div>
-        ))
+            <div className="post-load-more">
+                {result && result.isLoading ? (
+                    <div className="load-more">LOADING...</div>
+                ) : (
+                    <div className="load-more" onClick={() => loadMore(result.next)} >LOAD MORE</div>
+                )}
+            </div>
+        </div>
     );
 }

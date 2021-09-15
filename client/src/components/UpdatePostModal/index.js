@@ -30,15 +30,15 @@ export default function UpdatePostModal(props) {
         <div className={classes.paper} id='simple-modal-title'>
             <h2>Edit Post</h2>
             <form noValidate autoComplete='off' className={classes.form}>
-                <img className={classes.image} src={data.attchment}/>
+                <img className={classes.image} src={data.attchment} alt='abc'/>
                 <TextField className={classes.title}
                     required label='Title'
                     value={data.title}
                     onChange={(e) => setData({ ...data, title: e.target.value })}
                 />
                 <TextareaAutosize className={classes.textarea}
-                    rowsMin={5}
-                    rowsMax={10}
+                    minRows={5}
+                    maxRows={10}
                     placeholder='Content...'
                     value={data.content}
                     onChange={(e) => setData({ ...data, content: e.target.value })}

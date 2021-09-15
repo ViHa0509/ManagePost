@@ -1,6 +1,7 @@
 export const INIT_STATE = {
     posts: {
-        isLoading: false, 
+        isLoading: false,
+        next:'',
         data: []
     },
     modal: {
